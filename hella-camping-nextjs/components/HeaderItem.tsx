@@ -10,7 +10,7 @@ type Props = {
 function HeaderItem({ title, Icon }: Props) {
   return (
     <Link href={title}>
-      <div className="group flex w-12 cursor-pointer flex-col items-center  sm:w-20">
+      <div className="group flex w-12 cursor-pointer flex-col items-end  sm:w-20 text-white">
         <Icon className="mb-1 h-8 group-hover:animate-bounce" />
         <p className="tracking-widest opacity-0 group-hover:opacity-100">
           {title}

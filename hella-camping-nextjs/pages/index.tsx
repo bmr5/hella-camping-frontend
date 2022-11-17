@@ -1,14 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Campgrounds from "../components/Campgrounds";
+import Facilities from "../components/Facilities";
 import CTA from "../components/CTA";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import SearchTypeahead from "../components/SearchTypeahead";
 import { GetStaticProps } from "next";
 import { InferGetStaticPropsType } from "next";
+import { useState } from "react";
 
-export type Campground = {
+export type Park = {
   slug: string;
   "place-id": number;
   name: string;
@@ -16,23 +15,36 @@ export type Campground = {
   longitude: number;
 };
 
+export type Facility = {
+  name: string;
+  "origin-facility-id": number;
+  "origin-place-id": number;
+  slug: string;
+};
+
 const Home: NextPage = ({
-  campgrounds,
+  parks,
+  facilities,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const [isTypeaheadShown, setIsTypeaheadShown] = useState(false);
   return (
     <div className="">
       <Head>
-        <title>Create Next App</title>
+        <title>HellaCamping | Home</title>
+        <meta name="keywords" content="camping reservation notifications" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
-
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center px-10 xl:px-20 sm:pt-5">
         <CTA />
-        <SearchTypeahead campgrounds={campgrounds} />
-        <Campgrounds campgrounds={campgrounds} />
-        <Footer />
+        <SearchTypeahead
+          facilities={facilities}
+          parks={parks}
+          setIsTypeaheadShown={setIsTypeaheadShown}
+        />
+        {isTypeaheadShown === false && (
+          <Facilities facilities={facilities} parks={parks} />
+        )}
       </div>
     </div>
   );
@@ -41,13 +53,18 @@ const Home: NextPage = ({
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const campgrounds: [Campground] = await fetch(
-    "https://dev.hellacamping.in/parks"
+  const parks: [Park] = await fetch("https://dev.hellacamping.in/parks").then(
+    (res) => res.json()
+  );
+
+  const facilities: [Facility] = await fetch(
+    "https://dev.hellacamping.in/facilities"
   ).then((res) => res.json());
 
   return {
     props: {
-      campgrounds,
+      parks,
+      facilities,
     },
   };
 };
