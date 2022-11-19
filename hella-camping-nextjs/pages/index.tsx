@@ -6,6 +6,7 @@ import SearchTypeahead from "../components/SearchTypeahead";
 import { GetStaticProps } from "next";
 import { InferGetStaticPropsType } from "next";
 import { useState } from "react";
+import Footer from "../components/Footer";
 
 export type Park = {
   slug: string;
@@ -35,7 +36,7 @@ const Home: NextPage = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex flex-col items-center justify-center px-10 xl:px-20 sm:pt-5">
+      <div className=" bg-neutral-100 flex flex-col items-center justify-center px-10 xl:px-20 sm:pt-5">
         <CTA />
         <SearchTypeahead
           facilities={facilities}
@@ -45,6 +46,7 @@ const Home: NextPage = ({
         {isTypeaheadShown === false && (
           <Facilities facilities={facilities} parks={parks} />
         )}
+        <Footer />
       </div>
     </div>
   );

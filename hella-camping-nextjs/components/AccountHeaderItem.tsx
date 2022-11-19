@@ -26,12 +26,12 @@ function AccountHeaderItem() {
       onMouseEnter={() => setShowMenu(true)}
       onMouseLeave={() => setShowMenu(false)}
     >
-      <div className="group flex w-12 cursor-pointer flex-col items-end  sm:w-20 text-white">
-        <UserIcon
-          className="mb-1 h-8 group-hover:animate-bounce"
-          onClick={() => signIn()}
-        />
-      </div>
+      <Link
+        href="/Account"
+        className="group flex w-12 cursor-pointer flex-col items-end  sm:w-20 text-white"
+      >
+        <UserIcon className="mb-1 h-8 group-hover:animate-bounce" />
+      </Link>
 
       {showMenu && (
         <div className=" px-3 flex flex-col absolute top-20 right-4 bg-green-800 border-gray-600 rounded text-white">
