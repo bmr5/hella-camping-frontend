@@ -31,7 +31,7 @@ function Account() {
 
   return (
     <div className="flex flex-row h-screen">
-      <div className="w-1/4 border-r-2 bg-neutral-100 flex flex-col">
+      <div className="w-1/4 border-r-2 bg-neutral-100 flex flex-col pt-5">
         <button onClick={() => setCurrentViewSelection(Views.SETTINGS)}>
           {Views.SETTINGS}
         </button>
@@ -43,7 +43,9 @@ function Account() {
         </button>
       </div>
 
-      <div className="w-full bg-white">{currView}</div>
+      <div className="w-full flex flex-col items-center bg-neutral-50">
+        {currView}
+      </div>
     </div>
   );
 }

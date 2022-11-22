@@ -1,18 +1,31 @@
 import { GetStaticProps } from "next";
-import React from "react";
+import React, { useState } from "react";
 import { Facility } from "..";
 import Image from "next/image";
 import Link from "next/link";
-
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import { Calendar } from "react-date-range";
+import {
+  customDayContent,
+  getDisabledDates,
+} from "../../calendar_utils/CalendarUtils";
 type Props = {
   facility: Facility;
 };
 
 function FacilityPage({ facility }: Props) {
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+
+  const handleSelect = (date: Date) => {
+    setSelectedDate(date);
+  };
+
   const facilityImageUrl =
     facility.imageURL ?? "https://www.gstatic.com/webp/gallery/4.webp";
+
   return (
-    <div className="w-full px-10 pt-10 bg-neutral-100">
+    <div className="w-full px-10 pt-10 h-screen">
       <div className="relative w-full pb-10">
         <Image
           alt={`photo of ${facility.name}`}
@@ -22,14 +35,14 @@ function FacilityPage({ facility }: Props) {
           className="rounded-xl object-cover h-52 w-full"
           priority
         />
-        <div className="absolute text-white border border-red-500 w-full h-full top-0 flex flex-col items-center justify-center">
+        <div className="absolute text-white w-full h-full top-0 flex flex-col items-center justify-center">
           <h1 className="font-bold text-2xl">{facility.name}</h1>
           <h1 className="font-bold text-xl">Park Name Here</h1>
         </div>
       </div>
 
-      <div className="flex flex-row">
-        <div className="border border-blue-500 w-4/6">
+      <div className="flex flex-row gap-10">
+        <div className="">
           <h1 className="font-extrabold text-3xl pb-2">Overview</h1>
           <h2 className="font-bold text-xl pb-2">Park Overview</h2>
           <p className="pb-2">
@@ -65,17 +78,33 @@ function FacilityPage({ facility }: Props) {
           </p>
         </div>
 
-        <div className="w-2/6 border border-black ">
+        <div className="">
           <div className="flex flex-col items-center justify-center bg-white border rounded-lg p-5 gap-5">
-            <button className="h-20 bg-emerald-300 w-full border rounded-lg text-white text-xl font-bold shadow-md">
+            <Link
+              href={{
+                pathname: `/alerts/${facility["origin-place-id"]}`,
+              }}
+              className="h-20 bg-emerald-300 w-full border rounded-lg text-white text-xl font-bold shadow-md flex items-center justify-center"
+            >
               Create Alert
-            </button>
+            </Link>
             <Link
               className="w-full h-20 bg-slate-300 flex items-center justify-center border rounded-lg text-white text-xl font-bold shadow-md"
               href={facility.url ?? "/"}
             >
-              View on Gov site
+              View on Gov Site
             </Link>
+          </div>
+          <div className="">
+            <Calendar
+              minDate={new Date()}
+              date={selectedDate}
+              onChange={handleSelect}
+              dayContentRenderer={customDayContent}
+              color={"#166534"}
+              disabledDates={[]}
+              className="border rounded-lg"
+            />
           </div>
         </div>
       </div>

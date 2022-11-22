@@ -36,7 +36,7 @@ const Home: NextPage = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className=" bg-neutral-100 flex flex-col items-center justify-center px-10 xl:px-20 sm:pt-5">
+      <div className="flex flex-col items-center justify-center px-10 xl:px-20 sm:pt-5">
         <CTA />
         <SearchTypeahead
           facilities={facilities}
