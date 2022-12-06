@@ -6,7 +6,7 @@ import AccountHeaderItem from "./AccountHeaderItem";
 
 function Header() {
   return (
-    <header className="p-10 flex h-auto flex-row justify-between bg-emerald-700">
+    <header className="p-5 pt-7 flex flex-row justify-between bg-emerald-700">
       <div>
         <Link href="/">
           <h1 className="text-4xl font-extrabold text-white">HellaCamping</h1>

@@ -7,7 +7,8 @@ function CTA() {
         Camp at sold out campgrounds.
       </h1>
       <h2 className="text-xl">
-        Get notified when someone cancels their reservation.
+        Let us know where you want to camp and we'll shoot you a message when it
+        opens up.
       </h2>
     </div>
   );

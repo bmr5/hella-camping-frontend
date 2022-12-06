@@ -1,49 +1,24 @@
 import React, { useState } from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import Link from "next/link";
 import { UserIcon } from "@heroicons/react/24/outline";
 
 function AccountHeaderItem() {
   const { data: session } = useSession();
-  const [showMenu, setShowMenu] = useState(false);
-
-  if (!session) {
-    return (
-      <div className="group flex w-12 cursor-pointer flex-col items-center  sm:w-20 text-white">
-        <UserIcon
-          className="mb-1 h-8 group-hover:animate-bounce"
-          onClick={() => signIn()}
-        />
-        <p className="tracking-widest opacity-0 group-hover:opacity-100">
-          Login
-        </p>
-      </div>
-    );
-  }
 
   return (
-    <div
-      onMouseEnter={() => setShowMenu(true)}
-      onMouseLeave={() => setShowMenu(false)}
+    <Link
+      href={session ? "/Account" : ""}
+      className="group flex items-center w-12 cursor-pointer flex-col sm:w-20 text-white"
     >
-      <Link
-        href="/Account"
-        className="group flex w-12 cursor-pointer flex-col items-end  sm:w-20 text-white"
-      >
-        <UserIcon className="mb-1 h-8 group-hover:animate-bounce" />
-      </Link>
-
-      {showMenu && (
-        <div className=" px-3 flex flex-col absolute top-20 right-4 bg-green-800 border-gray-600 rounded text-white">
-          <Link className="pt-2" href="/Account">
-            <p>My Account</p>
-          </Link>
-          <button className="pt-2" onClick={() => signOut()}>
-            logout
-          </button>
-        </div>
-      )}
-    </div>
+      <UserIcon
+        className="mb-1 h-8 group-hover:animate-bounce"
+        onClick={session ? () => {} : () => signIn()}
+      />
+      <p className="opacity-0 group-hover:opacity-100">
+        {session ? "Account" : "Login"}
+      </p>
+    </Link>
   );
 }
 

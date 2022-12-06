@@ -1,12 +1,21 @@
-import React, { Children, useState } from "react";
+import type { Facility } from "../pages";
+
+import React, { Dispatch, SetStateAction } from "react";
 import AlertCard from "./AlertCard";
 
 type Props = {
   cardText: JSX.Element;
+  facilities: Facility[];
+  selection: number[];
+  setSelection: Dispatch<SetStateAction<number[]>>;
 };
 
-function CheckListCard({ cardText }: Props) {
-  const [selection, setSelection] = useState<JSX.Element[]>([]);
+function CheckListCard({
+  cardText,
+  facilities,
+  selection,
+  setSelection,
+}: Props) {
   const handleCheck = (event: any) => {
     let updatedList = [...selection];
     if (event.target.checked) {
@@ -17,30 +26,27 @@ function CheckListCard({ cardText }: Props) {
     setSelection(updatedList);
   };
 
-  const getCampgroundChecklist = (campgrounds: []) => {
-    let tempArr = [];
-    for (let i = 0; i < 4; i++) {
-      tempArr.push(
-        <div className="flex gap-2">
-          <input
-            type="checkbox"
-            id={`campground${i}`}
-            name={`campground${i}`}
-            value={`campground${i}`}
-            onChange={handleCheck}
-          />
-          <label htmlFor="{`campground${i}`}">{`Campground ${i}`}</label>
-        </div>
-      );
-    }
-    return tempArr;
-  };
+  const campgrounds = facilities.map((facility, i) => {
+    const { name, id } = facility;
+    return (
+      <div className="flex gap-2" key={facility.name}>
+        <input
+          type="checkbox"
+          id={`${id}`}
+          name={`${name}`}
+          value={`${id}`}
+          onChange={handleCheck}
+        />
+        <label htmlFor={`${name}-${i}`}>{`${name}`}</label>
+      </div>
+    );
+  });
 
   return (
     <AlertCard>
       <div className="border-r pr-5 w-1/2">{cardText}</div>
       <div className="flex flex-col items-center justify-center w-1/2">
-        {getCampgroundChecklist([])}
+        <ul>{campgrounds}</ul>
       </div>
     </AlertCard>
   );
