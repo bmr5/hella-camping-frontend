@@ -1,14 +1,13 @@
 import { GetStaticProps } from "next";
 import React from "react";
 import { Park } from "..";
-import Image from "next/image";
+import FallbackImage from "../../components/FallbackImage";
 import Link from "next/link";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import MapTile from "../../components/MapTile";
 import { X_API_KEY, CLIENT } from "../api/graphql/GraphqlConstants";
 import { gql } from "@apollo/client";
-import SanClementeBeach from "../../resources/San_Clemente_Beach.jpeg";
 import getStaticPathsForParkIDs from "../../hooks/getStaticPathsForParkIDs";
 import CreateAlertButton from "../../components/CreateAlertButton";
 
@@ -30,9 +29,9 @@ function ParkPage({ park }: Props) {
   return (
     <div className="w-full px-10 pt-10 pb-5 min-h-[1000px]">
       <div className="relative w-full pb-10">
-        <Image
+        <FallbackImage
           alt={`photo of ${name}`}
-          src={imageUrl ?? SanClementeBeach}
+          src={imageUrl ?? ""}
           width={1000}
           height={400}
           className="rounded-xl object-cover h-52 w-full"

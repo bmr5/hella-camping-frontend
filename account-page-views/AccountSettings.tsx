@@ -3,7 +3,6 @@ import { useSession, signOut } from "next-auth/react";
 
 function AccountSettings() {
   // TODO: Utilize user data to prefill the placeholders
-
   const { data: session } = useSession();
   const user = session?.user;
   return (
@@ -47,7 +46,9 @@ function AccountSettings() {
         </button>
         <button
           className="border bg-slate-400 hover:bg-green-400  rounded-lg w-1/3"
-          onClick={() => signOut()}
+          onClick={() => {
+            signOut({ callbackUrl: "/" });
+          }}
         >
           <p>Logout</p>
         </button>

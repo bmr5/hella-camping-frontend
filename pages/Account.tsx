@@ -12,12 +12,12 @@ enum Views {
 }
 
 function Account() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [currentViewSelection, setCurrentViewSelection] = useState<Views>(
     Views.SETTINGS
   );
 
-  if (session != null) {
+  if (status === "authenticated") {
     let currView;
     switch (currentViewSelection) {
       case Views.SETTINGS:

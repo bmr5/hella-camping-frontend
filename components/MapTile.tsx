@@ -46,7 +46,7 @@ function MapTile({ campgrounds, parkLocation }: Props) {
     <Map
       initialViewState={viewState}
       style={{
-        height: "500px",
+        height: "400px",
         borderRadius: "10px",
         boxShadow: "0 0 0 1px white",
       }}

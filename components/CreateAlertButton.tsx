@@ -7,9 +7,9 @@ type Props = {
 };
 
 function CreateAlertButton({ parkID }: Props) {
-  const { data: session } = useSession();
+  const { status } = useSession();
 
-  if (session != null) {
+  if (status === "authenticated") {
     return (
       <Link
         href={{
@@ -23,7 +23,7 @@ function CreateAlertButton({ parkID }: Props) {
   } else {
     return (
       <button
-        onClick={() => signIn()}
+        onClick={() => signIn("cognito")}
         className="h-20 bg-emerald-400 w-full border rounded-lg text-white text-xl font-bold shadow-md flex items-center justify-center transition duration-300 hover:bg-green-400"
       >
         Login To Create Alert

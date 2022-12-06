@@ -5,7 +5,6 @@ import SearchTypeahead from "../components/SearchTypeahead";
 import { GetStaticProps } from "next";
 import { InferGetStaticPropsType } from "next";
 import { useState } from "react";
-import Footer from "../components/Footer";
 import TopParks from "../components/TopParks";
 import { gql } from "@apollo/client";
 import { X_API_KEY, CLIENT } from "./api/graphql/GraphqlConstants";
@@ -45,14 +44,13 @@ const Home: NextPage = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex flex-col items-center px-10 xl:px-20 min-h-screen position relative">
+      <div className="flex flex-col items-center px-10 xl:px-20 min-h-screen h-full">
         <CTA />
         <SearchTypeahead
           parks={parks}
           setIsTypeaheadShown={setIsTypeaheadShown}
         />
         {isTypeaheadShown === false && <TopParks parks={parks} />}
-        <Footer />
       </div>
     </div>
   );

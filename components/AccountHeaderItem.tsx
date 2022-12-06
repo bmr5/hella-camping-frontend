@@ -4,19 +4,20 @@ import Link from "next/link";
 import { UserIcon } from "@heroicons/react/24/outline";
 
 function AccountHeaderItem() {
-  const { data: session } = useSession();
+  const { status } = useSession();
+  const isLoggedIn = status === "authenticated";
 
   return (
     <Link
-      href={session ? "/Account" : ""}
+      href={isLoggedIn ? "/Account" : ""}
       className="group flex items-center w-12 cursor-pointer flex-col sm:w-20 text-white"
     >
       <UserIcon
         className="mb-1 h-8 group-hover:animate-bounce"
-        onClick={session ? () => {} : () => signIn()}
+        onClick={isLoggedIn ? () => {} : () => signIn("cognito")}
       />
       <p className="opacity-0 group-hover:opacity-100">
-        {session ? "Account" : "Login"}
+        {isLoggedIn ? "Account" : "Login"}
       </p>
     </Link>
   );

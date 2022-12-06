@@ -10,9 +10,9 @@ function Footer() {
 
   return (
     <div
-      className={`position absolute w-full bottom-0 flex flex-row-reverse justify-between px-10 xl:px-20`}
+      className={`absolute w-full bottom-0 flex flex-row-reverse justify-between py-2 px-10 xl:px-20`}
     >
-      <div className="flex flex-row gap-x-2">
+      <div className="flex flex-row gap-x-2 font-light text-gray-500">
         <Link href="Privacy">Privacy Policy</Link>
         <Link href="Terms">Terms</Link>
         <Link href="Support">Support</Link>
