@@ -60,7 +60,7 @@ function ParkPage({ park }: Props) {
             {park.id && <CreateAlertButton parkID={park.id} />}
             <Link
               className="w-full h-20 bg-slate-400 flex items-center justify-center border rounded-lg text-white text-xl font-bold shadow-md transition duration-300 hover:bg-slate-500"
-              href={park.url ?? "/"}
+              href={""}
             >
               View on Gov Site
             </Link>
