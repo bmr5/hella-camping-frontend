@@ -7,7 +7,7 @@ function Support() {
       <h1 className="font-bold text-3xl pb-10 text-center">
         CONTACT HELLACAMPING
       </h1>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 text-center">
         <p>
           Shoot us an email at hello@hellacamping.com and we'll do our best to
           respond ASAP.
