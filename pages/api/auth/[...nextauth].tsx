@@ -12,7 +12,7 @@ export default NextAuth({
   callbacks: {
     async jwt({ token, account }) {
       console.log({ token, account });
-      // Persist the OAuth access_token to the token right after signin
+      // Persist the OAuth access_token to the token right after sign in
       if (account) {
         token.accessToken = account.access_token;
       }
