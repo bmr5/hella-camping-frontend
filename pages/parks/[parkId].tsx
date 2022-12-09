@@ -56,7 +56,7 @@ function ParkPage({ park }: Props) {
 
         <section className="w-1/2 md:w-1/3 flex flex-col gap-4">
           <div className="flex flex-col items-center justify-center bg-white border rounded-lg p-5 gap-5">
-            {park.id && <CreateAlertButton parkID={park.id} />}
+            {park.id && <CreateAlertButton park={park} />}
             <Link
               className="w-full h-20 bg-slate-400 flex items-center justify-center border rounded-lg text-white text-xl font-bold shadow-md transition duration-300 hover:bg-slate-500"
               href={""}

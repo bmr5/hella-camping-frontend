@@ -1,20 +1,21 @@
 import Link from "next/link";
 import React from "react";
 import { useSession, signIn } from "next-auth/react";
+import { Park } from "../pages";
+import { nameWithNoSpaces } from "../hooks/nameTransformUtils";
 
 type Props = {
-  parkID: number;
+  park: Park;
 };
 
-function CreateAlertButton({ parkID }: Props) {
+function CreateAlertButton({ park }: Props) {
   const { status } = useSession();
+  const name = nameWithNoSpaces(park.name);
 
   if (status === "authenticated") {
     return (
       <Link
-        href={{
-          pathname: `/alerts/${parkID}`,
-        }}
+        href={`/alerts/${park.id}?name=${name}`}
         className="h-20 bg-emerald-400 w-full border rounded-lg text-white text-xl font-bold shadow-md flex items-center justify-center transition duration-300 hover:bg-green-400"
       >
         Create Alert
