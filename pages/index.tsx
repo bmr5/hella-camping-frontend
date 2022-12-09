@@ -72,9 +72,13 @@ export const getStaticProps: GetStaticProps = async () => {
     context: { headers: { "x-api-key": X_API_KEY } },
   });
 
+  const filteredParks = data?.listPlaces?.filter((park: Park) => {
+    return park.imageUrl !== null || park.name !== null || park.id !== null;
+  });
+
   return {
     props: {
-      parks: data.listPlaces,
+      parks: filteredParks,
     },
   };
 };

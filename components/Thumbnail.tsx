@@ -2,15 +2,18 @@ import React from "react";
 import Link from "next/link";
 import { Park } from "../pages";
 import FallbackImage from "./FallbackImage";
+import { nameWithNoSpaces } from "../hooks/nameTransformUtils";
 
 interface Props {
   park: Park;
 }
 
 const Thumbnail = ({ park }: Props) => {
+  const name = nameWithNoSpaces(park.name);
+
   return (
     <Link
-      href={`/parks/${park.id}`}
+      href={`/parks/${park.id}?name=${name}`}
       className=" transform cursor-pointer transition duration-200 ease-in hover:z-50 sm:hover:scale-105"
     >
       <FallbackImage

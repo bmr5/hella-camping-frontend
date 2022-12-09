@@ -8,7 +8,7 @@ type Props = {
 
 function Layout({ children }: Props) {
   return (
-    <div className="flex flex-col bg-neutral-200 min-h-screen h-full relative">
+    <div className="flex flex-col bg-neutral-50 min-h-screen h-full relative">
       <Header />
       <div className="flex-1">{children}</div>
       <Footer />

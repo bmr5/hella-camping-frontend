@@ -7,7 +7,7 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { gql } from "@apollo/client";
 import { X_API_KEY, CLIENT } from "../api/graphql/GraphqlConstants";
-import getStaticPathsForParkIDs from "../../hooks/getStaticPathsForParkIDs";
+import { getStaticPathsForParkIDs } from "../../hooks/getStaticPathsForParks";
 import AlertForm from "../../components/AlertForm";
 
 type Props = {

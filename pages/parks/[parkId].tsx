@@ -8,7 +8,7 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import MapTile from "../../components/MapTile";
 import { X_API_KEY, CLIENT } from "../api/graphql/GraphqlConstants";
 import { gql } from "@apollo/client";
-import getStaticPathsForParkIDs from "../../hooks/getStaticPathsForParkIDs";
+import { getStaticPathsForParkIDs } from "../../hooks/getStaticPathsForParks";
 import CreateAlertButton from "../../components/CreateAlertButton";
 
 type Props = {

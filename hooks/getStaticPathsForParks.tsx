@@ -2,7 +2,7 @@ import { X_API_KEY, CLIENT } from "../pages/api/graphql/GraphqlConstants";
 import { gql } from "@apollo/client";
 import { Park } from "../pages";
 
-async function getStaticPathsForParkIDs() {
+export async function getStaticPathsForParkIDs() {
   const { data } = await CLIENT.query({
     query: gql`
       query HomePageParksQuery {
@@ -28,5 +28,3 @@ async function getStaticPathsForParkIDs() {
     fallback: false,
   };
 }
-
-export default getStaticPathsForParkIDs;

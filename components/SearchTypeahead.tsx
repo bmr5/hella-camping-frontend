@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { Facility, Park } from "../pages";
+import { Park } from "../pages";
+import { nameWithNoSpaces } from "../hooks/nameTransformUtils";
 
 type Props = {
   parks: [Park];
@@ -33,7 +34,10 @@ function SearchTypeahead({ parks, setIsTypeaheadShown }: Props) {
           {suggestedParks.map((park, i) => {
             if (i < 10) {
               return (
-                <Link key={park.id} href={`/parks/${park.id}`}>
+                <Link
+                  key={park.id}
+                  href={`/parks/${park.id}?name=${nameWithNoSpaces(park.name)}`}
+                >
                   <div className="py-2">
                     <h1 className="font-bold text-lg">{park.name}</h1>
                   </div>
