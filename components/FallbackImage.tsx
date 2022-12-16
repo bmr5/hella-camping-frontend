@@ -20,6 +20,7 @@ function FallbackImage({ src, ...rest }: Props) {
   return (
     <Image
       {...rest}
+      placeholder="blur"
       src={imgSrc ? imgSrc : placeholderImageURL}
       onError={() => {
         setImgSrc(placeholderImageURL);
