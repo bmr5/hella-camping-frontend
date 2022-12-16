@@ -1,6 +1,7 @@
 import { X_API_KEY, CLIENT } from "../pages/api/graphql/GraphqlConstants";
 import { gql } from "@apollo/client";
 import { Park } from "../pages";
+import { manualParkPageList } from "../resources/TopParksList";
 
 export async function getStaticPathsForParkIDs() {
   const { data } = await CLIENT.query({
@@ -15,13 +16,21 @@ export async function getStaticPathsForParkIDs() {
   });
 
   const parks: Park[] = data.listPlaces;
-  const paths = parks.map((park) => {
-    return {
-      params: {
-        parkId: String(park.id),
-      },
-    };
-  });
+  const paths = parks
+    .map((park) => {
+      const { id } = park;
+      for (let i = 0; i < manualParkPageList.length; i++) {
+        if (manualParkPageList[i] === id) {
+          return null;
+        }
+      }
+      return {
+        params: {
+          parkId: String(park.id),
+        },
+      };
+    })
+    .filter(Boolean);
 
   return {
     paths,

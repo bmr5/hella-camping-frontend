@@ -32,3 +32,7 @@ export const topParksList: Array<{
   },
   { id: 5, parkName: "Clear Lake State Park", src: ClearLakeImage },
 ];
+
+export const manualParkPageList: Array<number> = [
+  1, 5, 9, 13, 23, 25, 29, 33, 41, 45, 49,
+];
