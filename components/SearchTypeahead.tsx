@@ -15,9 +15,9 @@ function SearchTypeahead({ parks, setIsTypeaheadShown }: Props) {
     let filteredParks;
     const value = e.target.value;
     if (value.length > 0) {
-      const regex = new RegExp(`^${value}`, `i`);
+      const regex = new RegExp(`${value}`, `gi`);
       filteredParks = parks.filter((park) => {
-        if (park.name && regex.test(park.name)) {
+        if (park?.name?.match(regex)) {
           return park;
         }
       });

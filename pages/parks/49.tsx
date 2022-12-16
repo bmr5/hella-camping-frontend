@@ -8,30 +8,22 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import MapTile from "../../components/MapTile";
 import { X_API_KEY, CLIENT } from "../api/graphql/GraphqlConstants";
 import { gql } from "@apollo/client";
-import { getStaticPathsForParkIDs } from "../../hooks/getStaticPathsForParks";
 import CreateAlertButton from "../../components/CreateAlertButton";
+import PrarieCreekRedwoodsImage from "../../resources/Prarie-Creek-Redwoods/Prarie_Creek_Redwoods.webp";
 
 type Props = {
   park: Park;
 };
 
 function ParkPage({ park }: Props) {
-  const { imageUrl, facilities, name, id } = park;
-
-  const facilityNames = facilities?.map((facility) => {
-    return (
-      <li className="list-disc list-inside" key={facility.name}>
-        {facility.name}
-      </li>
-    );
-  });
+  const name = "Prarie Creek Redwoods State Park";
 
   return (
     <div className="w-full px-10 pt-10 pb-5 min-h-[1000px]">
       <div className="relative w-full pb-10">
         <FallbackImage
           alt={`photo of ${name}`}
-          src={imageUrl ?? ""}
+          src={PrarieCreekRedwoodsImage}
           width={1000}
           height={400}
           className="rounded-xl object-cover h-52 w-full"
@@ -45,10 +37,51 @@ function ParkPage({ park }: Props) {
       <div className="flex flex-col md:flex-row gap-10 w-full">
         <section className="w-2/3">
           <h2 className="font-bold text-xl pb-2">Park Overview</h2>
-          <p className="pb-2">{park.description}</p>
+          <p className="pb-2">
+            Prairie Creek Redwoods State Park is a beautiful wilderness
+            destination located in the heart of California's majestic Redwood
+            Coast. The park is home to over 14,000 acres of old-growth redwood
+            forest, which provides a stunning backdrop for a wide variety of
+            recreational activities.
+          </p>
+          <p className="pb-2">
+            One of the park's most popular features is its network of trails,
+            which offer hikers the chance to explore the park's beautiful
+            redwood forests and coastal bluffs. The park is also home to several
+            beautiful beaches, including Gold Bluffs Beach, which is known for
+            its stunning sunsets and is a popular spot for whale watching.
+          </p>
+          <p className="pb-2">
+            In addition to its natural beauty, Prairie Creek Redwoods State Park
+            is also home to a rich cultural and historical history. It was once
+            home to the Yurok Native American tribe, and the park is home to
+            several historic structures, including the historic Fern Canyon
+            Trail.
+          </p>
+          <p className="pb-2">
+            Whether you are interested in nature, history, or simply enjoying
+            the great outdoors, Prairie Creek Redwoods State Park has something
+            for everyone.
+          </p>
           <h2 className="font-bold text-xl pb-2">Facilities</h2>
           <p className="pb-2">The facilities at {name} include:</p>
-          <ul className="pb-2 list-disc list-inside">{facilityNames}</ul>
+          <ul className="pb-2 list-disc list-inside">
+            <li className="pb-2">
+              Elk Prairie Campground: This campground is located in a wooded
+              area of the park and is suitable for tents, trailers, and RVs.
+              Each campsite has a picnic table and fire ring, and there are
+              restrooms and showers nearby. This campground is open year-round.
+            </li>
+            <li className="pb-2">
+              Meadow Cabin Colony: This cabin colony is located in a wooded area
+              of the park and is suitable for tents and trailers. It includes a
+              large, sheltered picnic area with tables and barbecue grills, as
+              well as access to nearby restrooms and showers. This area is
+              suitable for groups of up to 50 people. The cabins are rustic,
+              with no electricity or running water. They include a wood stove,
+              bunk beds, and a table and benches.
+            </li>
+          </ul>
         </section>
 
         <section className="w-1/2 md:w-1/3 flex flex-col gap-4">
@@ -77,16 +110,12 @@ function ParkPage({ park }: Props) {
 
 export default ParkPage;
 
-export const getStaticPaths = async () => {
-  return getStaticPathsForParkIDs();
-};
-
 export const getStaticProps: GetStaticProps = async (context) => {
-  const parkId = context.params?.parkId;
+  const parkId = 49;
 
   const { data } = await CLIENT.query({
     query: gql`
-      query SingleParkQuery($where: PlaceWhereUniqueInput!) {
+      query PrarieCreekRedwoodsParkQuery($where: PlaceWhereUniqueInput!) {
         getPlace(where: $where) {
           id
           highlights

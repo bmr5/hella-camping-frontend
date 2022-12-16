@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Park } from "../pages";
 import Thumbnail from "./Thumbnail";
 import useWindowDimensions from "../hooks/useWindowDimensions";
+import { topParksList } from "../resources/TopParksList";
 
 type Props = {
   parks: [Park];
@@ -29,12 +30,12 @@ function TopParks({ parks }: Props) {
     <div className="w-full flex flex-col pb-16">
       <h1 className="w-full font-bold text-2xl pb-4 ml-2">Top Parks</h1>
       <div className="grid md:grid-cols-2 xl:grid-cols-3 3xl:flex gap-5">
-        {parks.map((park, i) => {
+        {topParksList.map((park, i) => {
           if (i > displayedParks - 1) {
             return;
           }
-          const parkName = park != null ? park.name : undefined;
-          return <Thumbnail park={park} key={park.id} />;
+          const { id, parkName, src } = park;
+          return <Thumbnail parkName={parkName} key={id} id={id} src={src} />;
         })}
       </div>
     </div>
