@@ -20,6 +20,7 @@ const Thumbnail = ({ parkName, id, src }: Props) => {
     >
       <FallbackImage
         alt={`photo of ${name}`}
+        placeholder="blur"
         src={src}
         width={600}
         height={200}
