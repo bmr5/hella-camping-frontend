@@ -55,7 +55,7 @@ function SearchTypeahead({ parks, setIsTypeaheadShown }: Props) {
     <div className="w-4/5 xl:w-3/5 pb-8">
       <div className="border h-full rounded-full">
         <input
-          className="w-full h-12 pl-4 rounded-full"
+          className="w-full h-12 pl-4 rounded-full text-ellipsis"
           type="text"
           id="typeahead"
           placeholder="What park would you like to visit?"
